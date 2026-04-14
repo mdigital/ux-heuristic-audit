@@ -2,12 +2,45 @@
 
 A [Claude Code](https://claude.com/claude-code) skill that audits a website against [Jakob Nielsen's 10 Usability Heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) and produces a single markdown report with per-heuristic scores, embedded screenshot evidence, and recommendations.
 
-## Quick install (macOS)
+## For designers — running a UX audit
 
-Copy-paste this one-liner — it clones the repo, runs the installer, and prints any issues:
+You don't need to code. This skill runs inside Claude Desktop and produces a single `REPORT.md` + `report.pdf` with scored heuristics and screenshots.
 
-```bash
-git clone https://github.com/mdigital/ux-heuristic-audit.git ~/.claude/skills/ux-heuristic-audit && bash ~/.claude/skills/ux-heuristic-audit/install-on-macos.sh
+> **Heads-up:** You'll use the **Code** tab in Claude Desktop. *Code tab ≠ coding* — it's just Claude with permission to read/write files on your Mac, which this skill needs so it can run its browser scripts and save screenshots to a folder.
+
+### One-time setup (~5 min)
+
+1. Install [Claude Desktop](https://claude.com/download) and sign in (Pro plan or above).
+2. Install Node.js — open **Terminal** and run:
+   ```bash
+   brew install node
+   ```
+   (If you don't have Homebrew, get it at [brew.sh](https://brew.sh) first.)
+3. Install the skill — paste this into Terminal. It clones the repo, runs the installer, and tells you about any issues:
+   ```bash
+   git clone https://github.com/mdigital/ux-heuristic-audit.git ~/.claude/skills/ux-heuristic-audit && bash ~/.claude/skills/ux-heuristic-audit/install-on-macos.sh
+   ```
+4. Restart Claude Desktop.
+
+### Running an audit
+
+1. Open Claude Desktop and click the **Code** tab.
+2. When prompted, pick a working folder (your Desktop or Documents is fine — this is where the report will be saved).
+3. Type:
+   ```
+   /ux-heuristic-audit https://yoursite.com
+   ```
+4. Leave the app open — the crawl takes a few minutes.
+5. When done, Claude will tell you where to find `REPORT.md` and `report.pdf`.
+
+### Useful options
+
+- Limit pages audited: `--max-pages 5`
+- Specify a search term to test: `--search-query "apply for a permit"`
+
+Example:
+```
+/ux-heuristic-audit https://yoursite.com --max-pages 5 --search-query "apply for a permit"
 ```
 
 ## What it does
