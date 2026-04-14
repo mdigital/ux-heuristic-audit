@@ -2,6 +2,14 @@
 
 A [Claude Code](https://claude.com/claude-code) skill that audits a website against [Jakob Nielsen's 10 Usability Heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) and produces a single markdown report with per-heuristic scores, embedded screenshot evidence, and recommendations.
 
+## Quick install (macOS)
+
+Copy-paste this one-liner — it clones the repo, runs the installer, and prints any issues:
+
+```bash
+git clone https://github.com/mdigital/ux-heuristic-audit.git ~/.claude/skills/ux-heuristic-audit && bash ~/.claude/skills/ux-heuristic-audit/install-on-macos.sh
+```
+
 ## What it does
 
 1. **Discovers pages** — parses `sitemap.xml` (falls back to homepage nav) and picks up to N representative pages: homepage, listing, detail, form, search, about, help, pricing, plus a crafted 404.
