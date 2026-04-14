@@ -92,10 +92,20 @@ Score scale per heuristic:
 - **2** — Notable problems affecting usability.
 - **1** — Severe violations, likely to block users.
 
-### 5. Report back
+### 5. Render PDF
+
+After `REPORT.md` is complete, render a printable PDF alongside it:
+
+```bash
+node scripts/pdf.mjs --out <out-dir>
+```
+
+This writes `report.pdf` in the output directory. Screenshots are embedded (images load from relative paths inside the out-dir), A4 with appropriate print CSS. No extra dependencies — uses the same Playwright browser plus `marked` for the markdown → HTML step.
+
+### 6. Report back
 
 Tell the user:
-- Path to `REPORT.md`.
+- Path to `REPORT.md` **and** `report.pdf`.
 - Overall score (mean of 10).
 - The 3 lowest-scoring heuristics and a one-line summary each.
 - Do not paste the full report into chat.

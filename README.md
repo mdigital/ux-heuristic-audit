@@ -18,6 +18,7 @@ A [Claude Code](https://claude.com/claude-code) skill that audits a website agai
 4. **Runs Lighthouse** once on the homepage for Core Web Vitals + a11y/best-practices/SEO scores.
 5. **Synthesises** — Claude reads the screenshots + accessibility trees + axe violations + probe results and scores each of the 10 heuristics /5 with "what works", "issues" (citing screenshots), and "recommendations".
 6. **Writes `REPORT.md`** in the output directory — self-contained, renders standalone with embedded images.
+7. **Renders `report.pdf`** — A4 print-styled PDF with embedded screenshots, generated via Playwright (no extra browser dependencies).
 
 ## Installation
 
@@ -70,7 +71,8 @@ Output:
 
 ```
 ux-audit-codehub.building.govt.nz-20260415/
-├── REPORT.md                     ← open this
+├── REPORT.md                     ← open this (or report.pdf for print/share)
+├── report.pdf                    ← A4 PDF with embedded screenshots
 ├── MANIFEST.json                 ← crawl manifest (pages, probes, derived search query)
 ├── analysis-summary.json         ← Lighthouse scores + aggregated axe violations
 ├── lighthouse.json               ← full Lighthouse result
@@ -131,7 +133,8 @@ ux-heuristic-audit/
 ├── package.json          # pinned deps: playwright, @axe-core/playwright, fast-xml-parser
 ├── scripts/
 │   ├── crawl.mjs         # Playwright discovery + capture + probes
-│   └── analyze.mjs       # axe aggregation + Lighthouse
+│   ├── analyze.mjs       # axe aggregation + Lighthouse
+│   └── pdf.mjs           # REPORT.md → report.pdf (A4, embedded screenshots)
 └── templates/
     └── report.md         # skeleton Claude fills in
 ```
