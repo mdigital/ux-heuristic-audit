@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+ux-audit-*/
+*.log
+.DS_Store
